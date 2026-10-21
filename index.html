@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Long Apps — Tải ứng dụng</title>
+  <meta name="description" content="Nơi tải các ứng dụng nhỏ, gọn, dễ dùng do Long làm ra. Tải trực tiếp, không cần đăng ký.">
+  <meta property="og:title" content="Long Apps — Tải ứng dụng">
+  <meta property="og:description" content="Ứng dụng nhỏ, gọn, dễ dùng. Tải trực tiếp, không cần đăng ký.">
+  <meta property="og:image" content="img/apps/mt-doi-file.png">
+  <meta name="theme-color" content="#1A5CFF">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="#" aria-label="Long — về đầu trang">
+        <img src="img/logo.png" alt="Long" width="130" height="75">
+      </a>
+      <nav class="nav" aria-label="Mục chính">
+        <a href="#apps">Ứng dụng</a>
+        <a href="#install">Cách cài</a>
+        <a href="#web">Website</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+      <a class="btn btn-sm btn-primary top-cta" href="#apps">Tải về</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-in">
+        <div class="hero-text">
+          <p class="eyebrow"><span class="dot"></span> Ứng dụng tự làm, tải miễn đăng ký</p>
+          <h1>Ứng dụng nhỏ,<br>việc <span class="script">nhanh gọn</span></h1>
+          <p class="lead">Những công cụ mình làm ra để đỡ mất thời gian mỗi ngày — giờ chia sẻ lại ở đây.
+            Bấm tải, mở lên là dùng.</p>
+          <div class="hero-acts">
+            <a class="btn btn-primary" href="#apps">
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+              Xem ứng dụng
+            </a>
+            <a class="btn btn-ghost" href="#install">Hướng dẫn cài</a>
+          </div>
+          <ul class="hero-stats" id="hero-stats"></ul>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb"></div>
+          <div class="float-card" id="hero-card"></div>
+          <svg class="waves" viewBox="0 0 400 90" preserveAspectRatio="none">
+            <path d="M0 40 C80 20 160 60 240 38 S360 20 400 32" />
+            <path d="M0 62 C90 46 170 78 250 60 S350 46 400 56" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="apps">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2>Ứng dụng</h2>
+            <p class="muted" id="apps-count"></p>
+          </div>
+          <div class="tools">
+            <label class="search">
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+              <input id="q" type="search" placeholder="Tìm ứng dụng…" autocomplete="off" aria-label="Tìm ứng dụng">
+            </label>
+            <div class="chips" id="chips" role="group" aria-label="Lọc theo hệ điều hành"></div>
+          </div>
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="empty" id="empty" hidden>Không có ứng dụng nào khớp. Thử từ khác nhé.</p>
+      </div>
+    </section>
+
+    <section class="sec sec-tint" id="install">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Cài trong 3 bước</h2>
+          <div class="chips" role="tablist" aria-label="Loại ứng dụng">
+            <button class="chip" type="button" role="tab" data-guide="win" aria-selected="true" aria-pressed="true">Ứng dụng Windows</button>
+            <button class="chip" type="button" role="tab" data-guide="ext" aria-selected="false" aria-pressed="false">Tiện ích Chrome</button>
+          </div>
+        </div>
+        <ol class="steps" data-panel="ext" hidden>
+          <li>
+            <span class="n">1</span>
+            <h3>Tải và giải nén</h3>
+            <p>Bấm <b>Tải về</b> để lấy file <i>.zip</i>, chuột phải → <b>Giải nén tất cả</b>. Giữ lại thư mục này, đừng xoá.</p>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <h3>Bật chế độ nhà phát triển</h3>
+            <p>Gõ <code>chrome://extensions</code> vào thanh địa chỉ, bật <b>Chế độ dành cho nhà phát triển</b> ở góc phải.</p>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <h3>Tải tiện ích lên</h3>
+            <p>Bấm <b>Tải tiện ích đã giải nén</b>, chọn thư mục vừa giải nén. Biểu tượng tiện ích hiện trên thanh công cụ.</p>
+          </li>
+        </ol>
+        <div class="ext-video" id="ext-video" data-panel="ext" hidden></div>
+        <ol class="steps" data-panel="win">
+          <li>
+            <span class="n">1</span>
+            <h3>Tải file về</h3>
+            <p>Bấm <b>Tải về</b> ở ứng dụng bạn cần. File nằm trong thư mục <i>Downloads</i>.</p>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <h3>Mở file</h3>
+            <p>Bấm đúp vào file. Nếu Windows hiện màn hình xanh “Windows protected your PC”, chọn
+              <b>More info</b> → <b>Run anyway</b>.</p>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <h3>Dùng luôn</h3>
+            <p>Ứng dụng mở ra là dùng được. Mỗi app có hướng dẫn ngắn trong phần <b>Chi tiết</b>.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec" id="web">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2>Website đã làm</h2>
+            <p class="muted">Ngoài ứng dụng, mình còn nhận làm website — vài dự án gần đây.</p>
+          </div>
+          <a class="btn btn-ghost" id="web-more" href="#" target="_blank" rel="noopener">
+            Xem thêm dự án
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <div class="webs" id="webs"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="faq">
+      <div class="wrap narrow">
+        <h2>Hỏi đáp</h2>
+        <div class="faq">
+          <details>
+            <summary>Vì sao Windows cảnh báo khi mở file?</summary>
+            <p>Windows cảnh báo với mọi ứng dụng chưa mua chữ ký số (một loại giấy chứng nhận trả phí hằng năm),
+              không có nghĩa file có hại. Chọn <b>More info</b> → <b>Run anyway</b> để mở.</p>
+          </details>
+          <details>
+            <summary>Làm sao biết file tải về không bị sửa?</summary>
+            <p>Mỗi app có mã <b>SHA-256</b> trong phần Chi tiết. Mở PowerShell ở thư mục chứa file và gõ
+              <code>Get-FileHash ten-file.exe</code> — kết quả phải trùng mã trên trang.</p>
+          </details>
+          <details>
+            <summary>Ứng dụng có gửi dữ liệu của tôi đi đâu không?</summary>
+            <p>Không. Các app ở đây xử lý ngay trên máy bạn. Nếu app nào cần mạng, phần Chi tiết sẽ ghi rõ.</p>
+          </details>
+          <details>
+            <summary>Gỡ ứng dụng thế nào?</summary>
+            <p>Ứng dụng Windows phần lớn chỉ là một file, không cần cài — xoá file đi là xong. Nếu đã bật “Chạy cùng Windows”,
+              tắt công tắc đó trong app trước khi xoá. Tiện ích Chrome: vào <code>chrome://extensions</code>, bấm <b>Xoá</b>
+              ở tiện ích đó.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contact">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow"><span class="dot"></span> Liên hệ</p>
+          <h2 class="contact-title">Cần một ứng dụng hay website? <span>Nói chuyện với mình.</span></h2>
+          <p class="muted contact-sub">App lỗi, cần thêm tính năng, hay muốn làm một công cụ riêng cho công việc — cứ gọi, nhắn Zalo hoặc gửi email.</p>
+        </div>
+        <ul class="ch" id="channels"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <img src="img/logo.png" alt="Long" width="96" height="55">
+      <p class="muted">© <span id="year"></span> Long. Ứng dụng được chia sẻ nguyên trạng.</p>
+      <a href="#" class="muted">Về đầu trang ↑</a>
+    </div>
+  </footer>
+
+  <dialog class="dlg" id="dlg" aria-labelledby="dlg-name"></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/apps.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
