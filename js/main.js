@@ -82,6 +82,8 @@
       '<div class="card-top"><img src="' + esc(a.icon) + '" alt="" width="64" height="64" loading="lazy">' +
       '<div><h3>' + esc(a.name) + '</h3><div class="sub">Cập nhật ' + date(a.updated) + '</div></div></div>' +
       '<p class="tagline">' + esc(a.tagline) + '</p>' +
+      (ytId(a.youtube) || a.video ? '<button class="vlink" type="button" data-open="' + esc(a.id) + '">' +
+        '<span aria-hidden="true">▶</span> ' + (ytId(a.youtube) ? 'Xem video giới thiệu' : 'Xem video hướng dẫn cài') + '</button>' : '') +
       (a.tags && a.tags.length ? '<div class="tags">' + a.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
       '<div class="meta">' +
         '<span>' + ICON.os + esc(a.platform) + '</span>' +
@@ -124,6 +126,7 @@
       '<div class="dlg-body">' +
         '<p>' + esc(a.description) + '</p>' +
         (a.video ? '<div><h4>Video hướng dẫn cài</h4>' + videoHtml(a) + '</div>' : '') +
+        (ytId(a.youtube) ? '<div><h4>Video giới thiệu</h4>' + ytHtml(a) + '</div>' : '') +
         '<div class="facts">' + facts.map(function (f) { return '<div><small>' + f[0] + '</small><b>' + esc(f[1]) + '</b></div>'; }).join('') + '</div>' +
         section('Làm được gì', a.features, 'ticks') +
         section('Cách dùng', a.steps, 'nums') +
@@ -144,6 +147,29 @@
     return '<video class="vid" controls preload="none" playsinline src="' + esc(a.video) + '"' +
       (a.poster ? ' poster="' + esc(a.poster) + '"' : '') + '></video>';
   }
+
+  // YouTube: chỉ hiện ảnh bìa, bấm mới nạp khung phát (trang khỏi tải script YouTube khi chưa xem)
+  function ytId(url) {
+    var m = String(url || '').match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/);
+    return m ? m[1] : '';
+  }
+  function ytHtml(a) {
+    var id = ytId(a.youtube);
+    return '<button class="yt" type="button" data-yt="' + id + '" aria-label="Phát video giới thiệu ' + esc(a.name) + '">' +
+      '<img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="" loading="lazy">' +
+      '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-yt]');
+    if (!b) return;
+    var f = document.createElement('iframe');
+    f.className = 'vid';
+    f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+    f.title = 'Video giới thiệu';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    b.replaceWith(f);
+  });
 
   function section(title, items, cls) {
     if (!items || !items.length) return '';

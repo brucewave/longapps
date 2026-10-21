@@ -20,6 +20,7 @@ window.LONG_APPS = [
     updated: '2026-10-21',
     size: '637 KB',
     file: 'downloads/FinConvert.exe',
+    youtube: 'https://youtu.be/8TftZE-GmuM', // video giới thiệu (không bắt buộc)
     sha256: '4c9dd3d45c2be02ab96b2b0fd42ec2a35c28cfe29633cd6ee613db7dab18031c',
     tags: ['Ảnh', 'PDF', 'Video', 'Ghi âm'],
     requires: [

@@ -195,6 +195,22 @@ code { font: 13px/1.5 'Roboto Mono', ui-monospace, monospace; background: var(--
 .steps b { color: var(--ink); }
 
 .vid { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--navy); border: 1px solid var(--line); }
+iframe.vid { border: 0; }
+.vlink {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px;
+  border: 0; border-radius: 999px; background: var(--blue-50); color: var(--blue-600); font: 500 14px var(--f-body); cursor: pointer;
+}
+.vlink span { font-size: 11px; }
+.vlink:hover { background: var(--blue-100); }
+.yt { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--navy); cursor: pointer; }
+.yt img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.yt:hover img { transform: scale(1.03); }
+.yt-play {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center;
+  width: 68px; height: 68px; border-radius: 50%; background: var(--blue); box-shadow: 0 10px 30px rgba(26, 92, 255, .45); transition: scale .2s;
+}
+.yt:hover .yt-play { scale: 1.08; }
+.yt-play svg { width: 30px; height: 30px; fill: #fff; margin-left: 4px; }
 .ext-video { margin-top: 24px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
 .ext-video[hidden], .ext-video:empty { display: none; }
 .ext-video h3 { margin-bottom: 14px; }
