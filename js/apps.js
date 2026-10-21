@@ -8,24 +8,24 @@
 */
 window.LONG_APPS = [
   {
-    id: 'mt-doi-file',
-    name: 'MT Đổi File',
+    id: 'finconvert',
+    name: 'FinConvert',
     tagline: 'Kéo file, giữ Shift — đổi định dạng ngay tại chỗ.',
     description:
       'Kéo một hoặc nhiều file rồi nhấn Shift: một vòng tròn hiện quanh con trỏ, thả vào ô cần làm là xong. ' +
       'File mới nằm ngay cạnh file gốc, file gốc giữ nguyên. Mọi thứ chạy trên máy bạn, không gửi gì lên mạng.',
-    icon: 'img/apps/mt-doi-file.png',
+    icon: 'img/apps/finconvert.png',
     platform: 'Windows',
     version: '1.0',
-    updated: '2026-10-20',
-    size: '626 KB',
-    file: 'downloads/MTDoiFile.exe',
-    sha256: '4f5e50637606b8da48cec0c2eb680c9f7de3aa0a8d707ca51d5cc4fd61f8a0ec',
+    updated: '2026-10-21',
+    size: '637 KB',
+    file: 'downloads/FinConvert.exe',
+    sha256: '4c9dd3d45c2be02ab96b2b0fd42ec2a35c28cfe29633cd6ee613db7dab18031c',
     tags: ['Ảnh', 'PDF', 'Video', 'Ghi âm'],
     requires: [
       'Windows 10 hoặc 11',
       'Không cần cài thêm gì để đổi ảnh và PDF',
-      'Đổi video / ghi âm / WebP cần ffmpeg (winget install Gyan.FFmpeg)'
+      'Đổi video / ghi âm / WebP / AVIF cần ffmpeg — máy chưa có thì app hiện nút "Cài tự động" (tải khoảng 110 MB, không cần quyền quản trị)'
     ],
     features: [
       'Đổi ảnh qua lại JPG, PNG, WebP, HEIC, AVIF, ICO, TIFF',
@@ -36,12 +36,13 @@ window.LONG_APPS = [
       'Có trong menu chuột phải "Gửi tới", chạy ngầm ở khay hệ thống'
     ],
     steps: [
-      'Tải file MTDoiFile.exe về, mở lên (không cần cài đặt).',
+      'Tải file FinConvert.exe về, mở lên (không cần cài đặt).',
       'Kéo file bất kỳ, trong lúc kéo nhấn giữ Shift.',
       'Thả file vào ô muốn làm trên vòng tròn — file mới nằm cạnh file gốc.'
     ],
     changelog: [
-      { v: '1.0', date: '2026-10-20', text: 'Bản đầu tiên.' }
+      { v: '1.0', date: '2026-10-21', text: 'Đổi tên từ MT Đổi File thành FinConvert; tự cài ffmpeg khi cần đổi video, ghi âm.' },
+      { v: '1.0', date: '2026-10-20', text: 'Bản đầu tiên (tên MT Đổi File).' }
     ]
   },
   {
