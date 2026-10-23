@@ -86,6 +86,47 @@ window.LONG_APPS = [
     changelog: [
       { v: '1.4.1', date: '2026-10-11', text: 'Bản công khai.' }
     ]
+  },
+  {
+    id: 'autokiemkhach',
+    name: 'Auto Kiếm Khách',
+    tagline: 'Lướt nhóm Facebook, thấy ai cần mua là chụp bài và nhắn tin chào hàng.',
+    description:
+      'Tiện ích cho Chrome: tự vào các nhóm Facebook bạn chọn, đọc bài mới và tìm người đang hỏi mua theo từ khoá ' +
+      '(ví dụ "cần build PC", "ai bán máy tính"). Thấy khách là chụp lại bài, mở cửa sổ chat nhắn tin kèm ảnh bài, ' +
+      'gửi xong tự đóng. Tin nhắn cách nhau ngẫu nhiên, có giới hạn số tin mỗi lần chạy. ' +
+      'Chạy xong có báo cáo từng khách, xuất được CSV. Mọi dữ liệu lưu trong trình duyệt của bạn.',
+    icon: 'img/apps/autokiemkhach.png',
+    platform: 'Chrome',
+    version: '1.0',
+    updated: '2026-10-23',
+    size: '44 KB',
+    file: 'downloads/auto-kiem-khach-1.0.zip',
+    sha256: '974290f8f4ff48a8d86700190f248d6ccc4af0577b826edec3bc5154f7757089',
+    tags: ['Facebook', 'Tìm khách', 'Nhắn tin'],
+    requires: [
+      'Chrome, Edge, Cốc Cốc hoặc trình duyệt nhân Chromium khác',
+      'Đã đăng nhập Facebook bằng nick cá nhân trên trình duyệt đó (Fanpage không nhắn trước cho người lạ được)',
+      'Messenger của nick đã tạo mã PIN (Facebook hỏi một lần khi mở tin nhắn trên máy tính)'
+    ],
+    features: [
+      'Quét danh sách nhóm đã tham gia, tìm nhóm theo tên, hoặc dán liên kết nhóm',
+      'Đặt số bài đọc mỗi nhóm và tổng thời gian chạy',
+      'Lọc theo từ khoá, không phân biệt có dấu hay không dấu',
+      'Chụp bài viết của khách và gửi kèm tin nhắn, {ten} thay bằng tên người đăng',
+      'Giãn cách ngẫu nhiên giữa 2 tin, giới hạn số tin, không nhắn trùng người',
+      'Chế độ chạy thử: chỉ lướt và ghi báo cáo, không gửi tin',
+      'Báo cáo từng lần chạy: số bài đã đọc, khách tìm thấy, đã nhắn, lỗi; xuất CSV'
+    ],
+    steps: [
+      'Tải file .zip về và giải nén ra một thư mục (đừng xoá thư mục này sau khi cài).',
+      'Mở chrome://extensions (Cốc Cốc: coccoc://extensions), bật "Chế độ dành cho nhà phát triển" ở góc phải.',
+      'Bấm "Tải tiện ích đã giải nén" (Load unpacked), chọn thư mục auto-kiem-khach vừa giải nén.',
+      'Bấm biểu tượng Auto Kiếm Khách, quét nhóm, sửa từ khoá và tin nhắn, chạy thử trước rồi mới chạy thật.'
+    ],
+    changelog: [
+      { v: '1.0', date: '2026-10-23', text: 'Bản đầu tiên.' }
+    ]
   }
 ];
 
