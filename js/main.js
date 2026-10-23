@@ -9,6 +9,8 @@
     box: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>',
     tag: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>',
     x: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+    prev: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+    next: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
     copy: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>',
     share: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14 21 3M21 3h-6M21 3v6M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>'
   };
@@ -144,15 +146,86 @@
       '</div>';
   }
 
-  // Ảnh hướng dẫn: dải ảnh vuốt ngang, bấm ảnh mở cỡ lớn ở tab mới
+  // Ảnh hướng dẫn: dải ảnh có nút ‹ › và chấm vị trí (điện thoại vuốt được); bấm ảnh mở trình xem lớn
   function screensHtml(a) {
     if (!a.screens || !a.screens.length) return '';
-    return '<div><h4>Hình ảnh hướng dẫn</h4><div class="shots">' + a.screens.map(function (s, i) {
-      return '<figure class="shot"><a href="' + esc(s.src) + '" target="_blank" rel="noopener" aria-label="Xem ảnh ' + (i + 1) + ' cỡ lớn">' +
-        '<img src="' + esc(s.src) + '" alt="' + esc(s.caption) + '" loading="lazy"></a>' +
-        '<figcaption><b>' + (i + 1) + '</b>' + esc(s.caption) + '</figcaption></figure>';
-    }).join('') + '</div></div>';
+    var many = a.screens.length > 1;
+    return '<div><h4>Hình ảnh hướng dẫn</h4><div class="shots-wrap">' +
+      '<div class="shots" id="shots">' + a.screens.map(function (s, i) {
+        return '<figure class="shot"><button type="button" data-shot="' + i + '" aria-label="Xem ảnh ' + (i + 1) + ' cỡ lớn">' +
+          '<img src="' + esc(s.src) + '" alt="' + esc(s.caption) + '" loading="lazy"></button>' +
+          '<figcaption><b>' + (i + 1) + '</b>' + esc(s.caption) + '</figcaption></figure>';
+      }).join('') + '</div>' +
+      (many
+        ? '<button class="shots-nav prev" type="button" data-shots="-1" aria-label="Ảnh trước">' + ICON.prev + '</button>' +
+          '<button class="shots-nav next" type="button" data-shots="1" aria-label="Ảnh sau">' + ICON.next + '</button>'
+        : '') +
+      '</div>' +
+      (many ? '<div class="shots-dots">' + a.screens.map(function (_, i) {
+        return '<button type="button" data-dot="' + i + '" aria-label="Ảnh ' + (i + 1) + '"></button>';
+      }).join('') + '</div>' : '') +
+      '</div>';
   }
+
+  function shotIndex(strip) {
+    var w = strip.firstElementChild ? strip.firstElementChild.getBoundingClientRect().width + 14 : 1;
+    return Math.round(strip.scrollLeft / w);
+  }
+  function goShot(strip, i) {
+    var n = strip.children.length;
+    i = Math.max(0, Math.min(n - 1, i));
+    var left = strip.children[i].offsetLeft - strip.offsetLeft;
+    strip.scrollTo({ left: left, behavior: 'smooth' });
+    // Trình duyệt tắt cuộn mượt (tab ẩn, giảm chuyển động) thì nhảy thẳng tới ảnh
+    setTimeout(function () {
+      if (Math.abs(strip.scrollLeft - left) > 4) strip.scrollLeft = left;
+      syncShots();
+    }, 600);
+  }
+  // Cập nhật nút ‹ › và chấm theo vị trí cuộn của dải ảnh
+  function syncShots() {
+    var strip = $('#shots', dlg);
+    if (!strip) return;
+    var i = shotIndex(strip), n = strip.children.length;
+    var atEnd = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4;
+    if (atEnd) i = n - 1;
+    dlg.querySelectorAll('[data-dot]').forEach(function (d, k) { d.setAttribute('aria-current', String(k === i)); });
+    var p = $('.shots-nav.prev', dlg), nx = $('.shots-nav.next', dlg);
+    if (p) p.disabled = strip.scrollLeft < 4;
+    if (nx) nx.disabled = atEnd;
+  }
+
+  // Trình xem ảnh lớn: ‹ › hoặc phím ← →, Esc để đóng
+  var lb = $('#lb'), lbApp = null, lbIdx = 0;
+  function showLb(a, i) {
+    lbApp = a;
+    lbIdx = (i + a.screens.length) % a.screens.length;
+    var s = a.screens[lbIdx], many = a.screens.length > 1;
+    lb.innerHTML =
+      '<div class="lb-top"><span class="lb-count">' + (lbIdx + 1) + ' / ' + a.screens.length + '</span>' +
+        '<button class="x" type="button" data-lb-close aria-label="Đóng">' + ICON.x + '</button></div>' +
+      '<div class="lb-stage">' +
+        (many ? '<button class="lb-nav prev" type="button" data-lb="-1" aria-label="Ảnh trước">' + ICON.prev + '</button>' : '') +
+        '<img src="' + esc(s.src) + '" alt="' + esc(s.caption) + '">' +
+        (many ? '<button class="lb-nav next" type="button" data-lb="1" aria-label="Ảnh sau">' + ICON.next + '</button>' : '') +
+      '</div>' +
+      '<p class="lb-cap"><b>' + (lbIdx + 1) + '</b>' + esc(s.caption) + '</p>';
+    if (!lb.open) lb.showModal();
+  }
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb || e.target.closest('[data-lb-close]')) return lb.close();
+    var b = e.target.closest('[data-lb]');
+    if (b) showLb(lbApp, lbIdx + Number(b.dataset.lb));
+  });
+  lb.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') showLb(lbApp, lbIdx - 1);
+    if (e.key === 'ArrowRight') showLb(lbApp, lbIdx + 1);
+  });
+  lb.addEventListener('close', function () {
+    // Trả dải ảnh về đúng ảnh vừa xem
+    var strip = $('#shots', dlg);
+    if (strip) goShot(strip, lbIdx);
+  });
 
   function videoHtml(a) {
     return '<video class="vid" controls preload="none" playsinline src="' + esc(a.video) + '"' +
@@ -192,9 +265,16 @@
     var a = apps.filter(function (x) { return x.id === id; })[0];
     if (!a) return;
     detail(a);
+    dlgApp = a;
     if (!dlg.open) dlg.showModal();
+    var strip = $('#shots', dlg);
+    if (strip) {
+      strip.addEventListener('scroll', syncShots, { passive: true });
+      syncShots();
+    }
     if (push && location.hash !== '#app/' + id) history.pushState(null, '', '#app/' + id);
   }
+  var dlgApp = null;
   function close() {
     if (dlg.open) dlg.close();
   }
@@ -205,6 +285,13 @@
   dlg.addEventListener('click', function (e) {
     if (e.target === dlg) return close(); // bấm ra ngoài khung
     if (e.target.closest('[data-close]')) return close();
+    var strip = $('#shots', dlg);
+    var nav = e.target.closest('[data-shots]');
+    if (nav) return goShot(strip, shotIndex(strip) + Number(nav.dataset.shots));
+    var dot = e.target.closest('[data-dot]');
+    if (dot) return goShot(strip, Number(dot.dataset.dot));
+    var shot = e.target.closest('[data-shot]');
+    if (shot) return showLb(dlgApp, Number(shot.dataset.shot));
     var c = e.target.closest('[data-copy]');
     if (c) {
       copy(c.dataset.copy).then(function () { toast('Đã chép mã SHA-256'); });
