@@ -13,6 +13,9 @@ Video hướng dẫn (không bắt buộc): bỏ .mp4 vào `videos/`, ghi `video
 hiện trong phần Chi tiết; app Chrome có video thì hiện thêm ở mục "Cài trong 3 bước". Video cài AutoMKT dựng bằng
 Remotion ở `../video-huong-dan/nguon/caidat-automkt` (đổi `SITE_URL` trong `src/scenes.ts` rồi `npm run render`).
 
+Ảnh hướng dẫn (không bắt buộc): bỏ ảnh vào `img/guides/`, ghi `screens: [{ src, caption }, ...]` trong khối của app —
+hiện thành dải ảnh vuốt ngang trong phần Chi tiết. Ảnh Auto Kiếm Khách chụp từ trang demo ở `autokiemkhach/tools/demo`.
+
 App nặng (> 50 MB) nên để ở GitHub Releases hoặc Google Drive rồi dán link đầy đủ vào `file`.
 
 ## Deploy lên Vercel

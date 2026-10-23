@@ -125,6 +125,7 @@
         '<button class="x" type="button" data-close aria-label="Đóng">' + ICON.x + '</button></div>' +
       '<div class="dlg-body">' +
         '<p>' + esc(a.description) + '</p>' +
+        screensHtml(a) +
         (a.video ? '<div><h4>Video hướng dẫn cài</h4>' + videoHtml(a) + '</div>' : '') +
         (ytId(a.youtube) ? '<div><h4>Video giới thiệu</h4>' + ytHtml(a) + '</div>' : '') +
         '<div class="facts">' + facts.map(function (f) { return '<div><small>' + f[0] + '</small><b>' + esc(f[1]) + '</b></div>'; }).join('') + '</div>' +
@@ -141,6 +142,16 @@
         '<button class="btn btn-ghost" type="button" data-share="' + esc(a.id) + '">' + ICON.share + 'Chia sẻ</button>' +
         '<a class="btn btn-primary" href="' + esc(a.file) + '"' + dlAttr(a) + ' data-dl="' + esc(a.id) + '">' + ICON.down + 'Tải về · ' + esc(a.size) + '</a>' +
       '</div>';
+  }
+
+  // Ảnh hướng dẫn: dải ảnh vuốt ngang, bấm ảnh mở cỡ lớn ở tab mới
+  function screensHtml(a) {
+    if (!a.screens || !a.screens.length) return '';
+    return '<div><h4>Hình ảnh hướng dẫn</h4><div class="shots">' + a.screens.map(function (s, i) {
+      return '<figure class="shot"><a href="' + esc(s.src) + '" target="_blank" rel="noopener" aria-label="Xem ảnh ' + (i + 1) + ' cỡ lớn">' +
+        '<img src="' + esc(s.src) + '" alt="' + esc(s.caption) + '" loading="lazy"></a>' +
+        '<figcaption><b>' + (i + 1) + '</b>' + esc(s.caption) + '</figcaption></figure>';
+    }).join('') + '</div></div>';
   }
 
   function videoHtml(a) {

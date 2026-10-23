@@ -102,7 +102,13 @@ window.LONG_APPS = [
     updated: '2026-10-23',
     size: '44 KB',
     file: 'downloads/auto-kiem-khach-1.0.zip',
-    sha256: '974290f8f4ff48a8d86700190f248d6ccc4af0577b826edec3bc5154f7757089',
+    sha256: '5b92e64a0a2e2c41d32040c6e33143923073f1374338d531f66b6f749bceb63e',
+    screens: [ // ảnh hướng dẫn (không bắt buộc): chụp từ autokiemkhach/tools/demo
+      { src: 'img/guides/autokiemkhach-1-cai-dat.jpg', caption: 'Chọn group, nhập từ khoá và tin nhắn, đặt cách chạy rồi bấm Bắt đầu chạy.' },
+      { src: 'img/guides/autokiemkhach-2-dang-chay.jpg', caption: 'Trong lúc chạy: số bài đã đọc, khách tìm thấy, đã nhắn và nhật ký cập nhật trực tiếp.' },
+      { src: 'img/guides/autokiemkhach-3-bao-cao.jpg', caption: 'Chạy xong tự mở báo cáo: kết quả từng group, ảnh bài và trạng thái từng khách, xuất CSV.' },
+      { src: 'img/guides/autokiemkhach-4-popup.jpg', caption: 'Bấm biểu tượng trên thanh công cụ để xem nhanh tiến độ hoặc Bắt đầu / Dừng.' }
+    ],
     tags: ['Facebook', 'Tìm khách', 'Nhắn tin'],
     requires: [
       'Chrome, Edge, Cốc Cốc hoặc trình duyệt nhân Chromium khác',
