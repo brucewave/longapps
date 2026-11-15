@@ -144,14 +144,14 @@ window.LONG_APPS = [
       'không cần API key. Dán câu trả lời lại vào app là ra phụ đề tiếng Việt. Nhận dạng giọng nói chạy ngay trên máy bạn.',
     icon: 'img/apps/gensrt.png',
     platform: 'Windows',
-    version: '1.0',
+    version: '1.1',
     updated: '2026-11-15',
-    size: '104 MB',
-    file: 'https://github.com/brucewave/longapps/releases/download/gensrt-1.0/GenSRT-1.0.zip',
-    sha256: '62d02a369cfca5c778560e7792b9194c1ffe629574e2b3d406de852d3d2b97c9',
+    size: '124 MB',
+    file: 'https://github.com/brucewave/longapps/releases/download/gensrt-1.1/GenSRT-1.1.zip',
+    sha256: '679d327649706f484329cf17949bb74cf944472f369669d6d9e5e594c5078841',
     screens: [ // chụp bằng gensrt/assets/screens.py
-      { src: 'img/guides/gensrt-1-chon-video.jpg', caption: 'Thêm một hoặc nhiều video, chọn ngôn ngữ và văn phong dịch, bấm Tạo phụ đề.' },
-      { src: 'img/guides/gensrt-2-dang-chay.jpg', caption: 'App nghe lời thoại từng video, thanh tiến trình chạy theo phần trăm.' },
+      { src: 'img/guides/gensrt-1-chon-video.jpg', caption: 'Thêm video, chọn nơi lưu, ngôn ngữ, số chữ mỗi dòng (phim Trung thường 8) và văn phong dịch.' },
+      { src: 'img/guides/gensrt-2-dang-chay.jpg', caption: 'Hiện % từng video và cả lượt, thời gian còn lại, file đã lưu ở đâu.' },
       { src: 'img/guides/gensrt-3-dan-ban-dich.jpg', caption: 'Copy prompt sang Claude/ChatGPT, dán câu trả lời vào ô rồi bấm Lưu phụ đề tiếng Việt.' }
     ],
     tags: ['Phụ đề', 'Video', 'Dịch'],
@@ -163,8 +163,10 @@ window.LONG_APPS = [
     ],
     features: [
       'Nhận dạng tiếng Trung, Anh, Hàn, Nhật, Thái hoặc tự nhận diện',
-      'Tách câu theo mốc thời gian từng từ, mỗi dòng ngắn vừa màn hình',
-      'Chạy nhiều video một lượt',
+      'Chọn số chữ mỗi dòng (phim Trung thường 8), ngắt dòng theo từ — không cắt đôi "师傅"',
+      'Tiếng Trung luôn ra chữ giản thể, mốc thời gian khớp từng câu',
+      'Chạy nhiều video một lượt, hiện % và thời gian còn lại',
+      'Lưu cạnh video gốc hoặc vào thư mục bạn chọn',
       'Prompt dịch theo thể loại: xưng hô sư phụ/đồ nhi cho phim cổ trang, anh/em cho phim hiện đại...',
       'Phim dài tự chia phần 250 dòng để dán vào AI không bị cắt',
       'Dán câu trả lời của AI là lưu ra .vi.srt, cảnh báo nếu thiếu dòng'
@@ -176,6 +178,7 @@ window.LONG_APPS = [
       'Dán câu trả lời vào ô trong app, bấm Lưu phụ đề tiếng Việt — file .vi.srt nằm cạnh video.'
     ],
     changelog: [
+      { v: '1.1', date: '2026-11-15', text: 'Giao diện mới: hiện % và thời gian còn lại, chọn thư mục lưu. Thêm số chữ mỗi dòng, ngắt dòng theo từ, luôn ra giản thể, kết quả ổn định giữa các lần chạy.' },
       { v: '1.0', date: '2026-11-15', text: 'Bản đầu tiên.' }
     ]
   }
